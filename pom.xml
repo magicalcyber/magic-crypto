@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>cc.magickiat</groupId>
+    <artifactId>magic-cypto</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>strategy</module>
+        <module>exchange</module>
+        <module>websocket</module>
+        <module>common</module>
+        <module>cli</module>
+    </modules>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <magiccrypto.common.version>1.0-SNAPSHOT</magiccrypto.common.version>
+        <magiccrypto.websocket.version>1.0-SNAPSHOT</magiccrypto.websocket.version>
+        <magiccrypto.exchange.version>1.0-SNAPSHOT</magiccrypto.exchange.version>
+
+        <jdk.version>11</jdk.version>
+        <retrofit.version>2.9.0</retrofit.version>
+        <okhttp3.version>4.9.0</okhttp3.version>
+        <commons.lang3.version>3.6</commons.lang3.version>
+        <junit5.version>5.7.2</junit5.version>
+        <slf4j.version>1.7.30</slf4j.version>
+        <log4j.version>2.14.1</log4j.version>
+        <lombok.version>1.18.20</lombok.version>
+
+
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>cc.magickiat</groupId>
+                <artifactId>common</artifactId>
+                <version>${magiccrypto.common.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cc.magickiat</groupId>
+                <artifactId>websocket</artifactId>
+                <version>${magiccrypto.websocket.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cc.magickiat</groupId>
+                <artifactId>exchange</artifactId>
+                <version>${magiccrypto.exchange.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.squareup.okhttp3</groupId>
+                <artifactId>okhttp</artifactId>
+                <version>${okhttp3.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.squareup.retrofit2</groupId>
+                <artifactId>retrofit</artifactId>
+                <version>${retrofit.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.squareup.retrofit2</groupId>
+                <artifactId>converter-jackson</artifactId>
+                <version>${retrofit.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>${commons.lang3.version}</version>
+            </dependency>
+
+
+            <dependency>
+                <groupId>org.apache.logging.log4j</groupId>
+                <artifactId>log4j-api</artifactId>
+                <version>${log4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.logging.log4j</groupId>
+                <artifactId>log4j-core</artifactId>
+                <version>${log4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.logging.log4j</groupId>
+                <artifactId>log4j-slf4j-impl</artifactId>
+                <version>${log4j.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.junit.jupiter</groupId>
+                <artifactId>junit-jupiter-engine</artifactId>
+                <version>${junit5.version}</version>
+                <scope>test</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>3.8.1</version>
+                    <configuration>
+                        <source>${jdk.version}</source>
+                        <target>${jdk.version}</target>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+
+    </build>
+</project>
