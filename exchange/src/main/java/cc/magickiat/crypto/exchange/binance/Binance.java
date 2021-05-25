@@ -4,6 +4,7 @@ import cc.magickiat.crypto.common.dto.Candlestick;
 import cc.magickiat.crypto.exchange.Exchange;
 import cc.magickiat.crypto.exchange.binance.domain.event.BinanceCandlestickEvent;
 import cc.magickiat.crypto.exchange.binance.callback.BinanceWebSocketCandlestickCallback;
+import cc.magickiat.crypto.strategy.BollingerBandStrategy;
 import cc.magickiat.crypto.strategy.RsiStrategy;
 import cc.magickiat.crypto.websocket.BaseWebSocket;
 import cc.magickiat.crypto.websocket.BaseWebSocketListener;
@@ -33,7 +34,7 @@ public class Binance implements Exchange {
 
         // TODO: Init candlestick data by using old data from exchange
         List<Candlestick> initCandlesticks = new ArrayList<>();
-        BinanceWebSocketCandlestickCallback callback = new BinanceWebSocketCandlestickCallback(this, new RsiStrategy(), initCandlesticks);
+        BinanceWebSocketCandlestickCallback callback = new BinanceWebSocketCandlestickCallback(this, new BollingerBandStrategy(), initCandlesticks);
         BaseWebSocketListener listener = new BaseWebSocketListener(callback, BinanceCandlestickEvent.class);
         return baseWebSocket.createWebSocket(url, listener);
     }

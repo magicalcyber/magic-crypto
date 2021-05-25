@@ -27,16 +27,12 @@ public class RsiStrategy implements TradeStrategy {
         int beginIndex = 0;
         int endIndex = candlesticks.size() - 1;
         double[] closedPrices = getClosedPrice(candlesticks);
-        double[] tempOutput = new double[candlesticks.size()];
-        double[] output = new double[candlesticks.size()];
+        double[] tempOutput = new double[closedPrices.length];
+        double[] output = createOutputArray(closedPrices.length);
 
         MInteger begin = new MInteger();
         MInteger length = new MInteger();
 
-        // reset data output
-        for (int i = 0; i < output.length; i++) {
-            output[i] = -1;
-        }
 
         taCore.rsi(beginIndex, endIndex, closedPrices, RSI_PERIOD, begin, length, tempOutput);
 
@@ -57,11 +53,4 @@ public class RsiStrategy implements TradeStrategy {
         return action;
     }
 
-    private double[] getClosedPrice(List<Candlestick> candlesticks) {
-        double[] result = new double[candlesticks.size()];
-        for (int i = 0; i < candlesticks.size(); i++) {
-            result[i] = Double.valueOf(candlesticks.get(i).getClose());
-        }
-        return result;
-    }
 }

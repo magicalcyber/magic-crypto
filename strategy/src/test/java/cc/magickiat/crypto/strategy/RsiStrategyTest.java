@@ -37,30 +37,14 @@ class RsiStrategyTest {
 
     @Test
     public void testRsiOverUpperBound_whenRsiProcess_willBeTradeActionSell() throws Exception {
-        List<Candlestick> candlesticks = new ArrayList<>();
-        Stream<String> lines = Files.lines(Path.of(this.getClass().getResource("/test-rsi-over-80.csv").toURI()));
-        List<String> closedPrices = lines.map(e -> e.split(",")[4]).collect(Collectors.toList());
-        for (String closedPrice : closedPrices) {
-            Candlestick candlestick = new Candlestick();
-            candlestick.setClose(closedPrice);
-            candlesticks.add(candlestick);
-        }
-
+        List<Candlestick> candlesticks = CandlestickTestUtil.readCandleStick("/test-rsi-over-80.csv");
         TradeAction action = strategy.process(candlesticks);
         assertEquals(TradeType.SELL, action.getTradeType());
     }
 
     @Test
     public void testRsiUnderLowerBound_whenRsiProcess_willBeTradeActionBuy() throws Exception {
-        List<Candlestick> candlesticks = new ArrayList<>();
-        Stream<String> lines = Files.lines(Path.of(this.getClass().getResource("/test-rsi-under-20.csv").toURI()));
-        List<String> closedPrices = lines.map(e -> e.split(",")[4]).collect(Collectors.toList());
-        for (String closedPrice : closedPrices) {
-            Candlestick candlestick = new Candlestick();
-            candlestick.setClose(closedPrice);
-            candlesticks.add(candlestick);
-        }
-
+        List<Candlestick> candlesticks = CandlestickTestUtil.readCandleStick("/test-rsi-under-20.csv");
         TradeAction action = strategy.process(candlesticks);
         assertEquals(TradeType.BUY, action.getTradeType());
     }
