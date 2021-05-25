@@ -24,6 +24,10 @@
             <groupId>cc.magickiat</groupId>
             <artifactId>websocket</artifactId>
         </dependency>
+        <dependency>
+            <groupId>cc.magickiat</groupId>
+            <artifactId>strategy</artifactId>
+        </dependency>
 
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
